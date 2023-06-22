@@ -1,0 +1,61 @@
+{
+	vragen: {
+		1: {
+			vraag: "Dit is vraag 1",
+			antwoord_1: "V1A",
+			antwoord_2: "V1B",
+			antwoord_3: "V1C",
+			antwoord_4: "V1D",
+			goed: "D",
+			type: "normal"
+			},
+		2: {
+			vraag: "Vraag 2 test",
+			antwoord_1: "V2A",
+			antwoord_2: "V2B",
+			antwoord_3: "V2C",
+			antwoord_4: "V2D",
+			goed: "B",
+			type: "normal"
+			},
+		3: {
+			vraag: "Dit is vraag 3",
+			antwoord_1: "V3A",
+			antwoord_2: "V3B",
+			antwoord_3: "V3C",
+			antwoord_4: "V3D",
+			goed: "C",
+			type: "normal"
+			},
+		4: {
+			vraag: "Vraag 4 test",
+			antwoord_1: "V4A",
+			antwoord_2: "V4B",
+			antwoord_3: "V4C",
+			antwoord_4: "V4D",
+			goed: "A",
+			type: "image",
+			image: "Bankhamer"
+			},
+		5: {
+			vraag: "Vraag 5 test",
+			antwoord_1: "V5A",
+			antwoord_2: "V5B",
+			antwoord_3: "V5C",
+			antwoord_4: "V5D",
+			goed: "D",
+			type: "normal"
+			},
+		6: {
+			vraag: "Vraag 6 test",
+			antwoord_1: "V6A",
+			antwoord_2: "V6B",
+			antwoord_3: "V6C",
+			antwoord_4: "V6D",
+			goed: "B",
+			type: "image",
+			image: "Beugelzaag",
+			laatste: "ja"
+			}
+		}
+}

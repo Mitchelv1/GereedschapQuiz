@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: 30122fd9a7bd55b4e91cb61ed6ca135b
+  - enabled: 1
+    path: Assets/Scenes/Vraag-ZF1.unity
+    guid: 4fe35df4176373349b37c68899d45826
+  - enabled: 1
+    path: Assets/Scenes/Vraag_S3.unity
+    guid: 2b8bea6d776d863479a916b827a1a68e
+  - enabled: 1
+    path: Assets/Scenes/Eind-leerlingen.unity
+    guid: 6fda2230c2c07c9488626a5821c25587
+  m_configObjects: {}
