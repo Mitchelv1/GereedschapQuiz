@@ -13,6 +13,7 @@ public class StateNameController : MonoBehaviour
     public static string checkVraag;
     public static bool laatsteVraag = false;
     public static int aantVragen;
+    public static bool isUpdateEnabled = false;
     public static string[] saveantwoord = new string[99];
     public static string[] AGoed = new string[99];
 }

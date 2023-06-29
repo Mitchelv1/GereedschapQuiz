@@ -62,7 +62,7 @@ public class Antwoorden : MonoBehaviour
 
     public void Popup()
     {
-        Time.timeScale = 1;
+        /*Time.timeScale = 1;*/
         if (StateNameController.laatsteVraag == true)
         {
             InleverenBtn.SetActive(true);

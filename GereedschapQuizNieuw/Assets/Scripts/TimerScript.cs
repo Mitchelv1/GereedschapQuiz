@@ -10,7 +10,6 @@ public class TimerScript : MonoBehaviour
     public float timeValue = 0;
     public static float timeCount;
     public static bool timerOff = StateNameController.timerOff;
-    private bool isUpdateEnabled = false;
     public TMP_Text firstMinute;
     public TMP_Text secondMinute;
     public TMP_Text firstSecond;
@@ -30,7 +29,7 @@ public class TimerScript : MonoBehaviour
 
     void Update()
     {
-        if (isUpdateEnabled)
+        if (StateNameController.isUpdateEnabled)
         {
             if (scene.buildIndex != 0)
             {
@@ -56,7 +55,7 @@ public class TimerScript : MonoBehaviour
 
     public void EnableUpdate()
     {
-        isUpdateEnabled = true;
+        StateNameController.isUpdateEnabled = true;
     }
 
     public void Inleveren()
