@@ -7,59 +7,74 @@ using UnityEngine.SceneManagement;
 
 public class NormalVraag : MonoBehaviour
 {
-    /*    public TextMeshProUGUI GoedTxt;
-        public TextMeshProUGUI FoutTxt;*/
-    /*    public Text TestTxt;*/
-/*    public TextMeshProUGUI TestTxt;*/
     public TextMeshProUGUI VraagTxt;
     public TextMeshProUGUI AntwoordATxt;
     public TextMeshProUGUI AntwoordBTxt;
     public TextMeshProUGUI AntwoordCTxt;
     public TextMeshProUGUI AntwoordDTxt;
+    public TextMeshProUGUI vraagNummerTxt;
+    public TextMeshProUGUI totaalTxt;
     public GameObject Antwoord_A;
     public GameObject Antwoord_B;
     public GameObject Antwoord_C;
     public GameObject Antwoord_D;
-/*    public GameObject CanvasPopup;*/
-/*    public GameObject VerderBtn;*/
     public GameObject Volgende;
     public GameObject Vorige;
+    public GameObject ArrowL;
+    public GameObject ArrowR;
     public GameObject Inleveren;
-
     public static string Type;
+    public static string vindLaatste;
     public static int vraagCountString;
+    public static int aantVragen = 1;
     public int Terug;
 
-    public static int Goed = StateNameController.Goed;
-    public static int Fout = StateNameController.Fout;
-/*    public static int vraagCount;*/
     private void Start()
     {
         CheckVraag();
+        if (StateNameController.checkVragen != false)
+        {
+            AantalVragen();
+        }
+        totaalTxt.text = StateNameController.aantVragen.ToString();
+    }
+
+    public void AantalVragen()
+    {
+        string filePath = Path.Combine("Assets", "vragen.txt");
+        string vragenTxt = File.ReadAllText(filePath);
+        JObject vragenJson = JObject.Parse(vragenTxt);
+        /*vindLaatste = (string)vragenJson["vragen"][aantVragen.ToString()]["laatste"];*/
+        while ((string)vragenJson["vragen"][aantVragen.ToString()]["laatste"] != "ja")
+        {
+            aantVragen++;
+        }
+        StateNameController.aantVragen = aantVragen;
+        StateNameController.checkVragen = false;
     }
     public void VraagReset()
     {
         if (StateNameController.vraagCount == 1)
         {
             Vorige.SetActive(false);
+            ArrowL.SetActive(false);
         }
         else
         {
             Vorige.SetActive(true);
+            ArrowL.SetActive(true);
         }
         Volgende.SetActive(false);
+        ArrowR.SetActive(false);
         Inleveren.SetActive(false);
-/*        CanvasPopup.SetActive(false);*/
-/*        GoedTxt.gameObject.SetActive(false);
-        FoutTxt.gameObject.SetActive(false);*/
-        Antwoord_A.GetComponent<Button>().enabled = true;
-        Antwoord_B.GetComponent<Button>().enabled = true;
-        Antwoord_C.GetComponent<Button>().enabled = true;
-        Antwoord_D.GetComponent<Button>().enabled = true;
-        Antwoord_A.GetComponent<Image>().color = new Color32(61, 126, 219, 255);
-        Antwoord_B.GetComponent<Image>().color = new Color32(61, 126, 219, 255);
-        Antwoord_C.GetComponent<Image>().color = new Color32(61, 126, 219, 255);
-        Antwoord_D.GetComponent<Image>().color = new Color32(61, 126, 219, 255);
+        Antwoord_A.GetComponent<Toggle>().interactable = true;
+        Antwoord_B.GetComponent<Toggle>().interactable = true;
+        Antwoord_C.GetComponent<Toggle>().interactable = true;
+        Antwoord_D.GetComponent<Toggle>().interactable = true;
+        Antwoord_A.GetComponent<Toggle>().isOn = false;
+        Antwoord_B.GetComponent<Toggle>().isOn = false;
+        Antwoord_C.GetComponent<Toggle>().isOn = false;
+        Antwoord_D.GetComponent<Toggle>().isOn = false;
     }
     public void CheckVraag()
     {
@@ -69,19 +84,18 @@ public class NormalVraag : MonoBehaviour
         JObject vragenJson = JObject.Parse(vragenTxt);
         vraagCountString = StateNameController.vraagCount + 1;
         Type = (string)vragenJson["vragen"][vraagCountString.ToString()]["type"];
-/*        TestTxt.text = vraagCount.ToString();
-*/        switch (Type)
+        switch (Type)
         {
             case "normal":
                 StateNameController.vraagCount++;
                 Normaal();
-/*                TestTxt.text = StateNameController.vraagCount.ToString();*/
                 break;
 
             case "image":
                 SceneManager.LoadScene(2);
                 break;
         }
+        Opgeslagen();
     }
 
     public void VorigeVraag()
@@ -97,14 +111,11 @@ public class NormalVraag : MonoBehaviour
         vraagCountString = StateNameController.vraagCount - 1;
         Terug = StateNameController.vraagCount - 2;
         Type = (string)vragenJson["vragen"][vraagCountString.ToString()]["type"];
-        /*        TestTxt.text = vraagCount.ToString();
-        */
         switch (Type)
         {
             case "normal":
                 StateNameController.vraagCount--;
                 Normaal();
-                /*                TestTxt.text = StateNameController.vraagCount.ToString();*/
                 break;
 
             case "image":
@@ -112,6 +123,7 @@ public class NormalVraag : MonoBehaviour
                 SceneManager.LoadScene(2);
                 break;
         }
+        Opgeslagen();
     }
 
     public void Normaal()
@@ -120,8 +132,6 @@ public class NormalVraag : MonoBehaviour
         string filePath = Path.Combine("Assets", "vragen.txt");
         string vragenTxt = File.ReadAllText(filePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
-
-        /*int vraagCountString = vraagCount;*/
         Type = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["type"];
         string[] antwoordenJson = new string[4];
         string vraagJson = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["vraag"];
@@ -134,6 +144,34 @@ public class NormalVraag : MonoBehaviour
         AntwoordCTxt.text = antwoordenJson[2];
         AntwoordDTxt.text = antwoordenJson[3];
         VraagTxt.text = vraagJson;
-/*        StateNameController.vraagCount = vraagCount;*/
+        if (StateNameController.vraagCount < 10)
+        {
+            vraagNummerTxt.text = "0" + StateNameController.vraagCount.ToString();
+        }
+        else
+        {
+            vraagNummerTxt.text = StateNameController.vraagCount.ToString();
+
+        }
+    }
+
+    public void Opgeslagen()
+    {
+        if (StateNameController.saveantwoord[StateNameController.vraagCount - 1] == "A")
+        {
+            Antwoord_A.GetComponent<Toggle>().isOn = true;
+        }
+        if (StateNameController.saveantwoord[StateNameController.vraagCount - 1] == "B")
+        {
+            Antwoord_B.GetComponent<Toggle>().isOn = true;
+        }
+        if (StateNameController.saveantwoord[StateNameController.vraagCount - 1] == "C")
+        {
+            Antwoord_C.GetComponent<Toggle>().isOn = true;
+        }
+        if (StateNameController.saveantwoord[StateNameController.vraagCount - 1] == "D")
+        {
+            Antwoord_D.GetComponent<Toggle>().isOn = true;
+        }
     }
 }

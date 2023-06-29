@@ -47,7 +47,7 @@
 			type: "normal"
 			},
 		6: {
-			vraag: "Vraag 6 test",
+			vraag: "Dit is de laatste vraag",
 			antwoord_1: "V6A",
 			antwoord_2: "V6B",
 			antwoord_3: "V6C",
@@ -57,5 +57,5 @@
 			image: "Beugelzaag",
 			laatste: "ja"
 			}
-		}
+	}
 }

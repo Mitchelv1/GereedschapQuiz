@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 30122fd9a7bd55b4e91cb61ed6ca135b
   - enabled: 1
-    path: Assets/Scenes/Vraag-ZF1.unity
-    guid: 4fe35df4176373349b37c68899d45826
+    path: Assets/Scenes/VraagNormal.unity
+    guid: a059b3e71e39b0f49a91ec4d72c9d7d1
   - enabled: 1
-    path: Assets/Scenes/Vraag_S3.unity
-    guid: 2b8bea6d776d863479a916b827a1a68e
+    path: Assets/Scenes/VraagImage.unity
+    guid: 8f9d474d9694f8242ad1a1ec4c7ebe9c
   - enabled: 1
     path: Assets/Scenes/Eind-leerlingen.unity
     guid: 6fda2230c2c07c9488626a5821c25587

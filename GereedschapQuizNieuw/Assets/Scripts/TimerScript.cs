@@ -17,7 +17,6 @@ public class TimerScript : MonoBehaviour
     public TMP_Text secondSecond;
     public Scene scene;
 
-    // Update is called once per frame
     void Start()
     {
         timerOff = false;
@@ -27,7 +26,6 @@ public class TimerScript : MonoBehaviour
         {
             DontDestroyOnLoad(go.gameObject);
         }
-/*        DontDestroyOnLoad(gameObject);*/
     }
 
     void Update()
@@ -46,7 +44,6 @@ public class TimerScript : MonoBehaviour
                     if (timeValue <= 3600)
                     {
                         timeValue += Time.deltaTime;
-                        /*                        timeCount = timeValue;*/
                     }
                     else
                     {

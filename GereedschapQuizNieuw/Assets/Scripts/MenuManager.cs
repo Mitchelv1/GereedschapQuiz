@@ -7,8 +7,6 @@ public class MenuManager : MonoBehaviour
 {
     public void Verder()
     {
-/*        StateNameController.Goed = Antwoorden.Goed;
-        StateNameController.Fout = Antwoorden.Fout;*/
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void Menu()
@@ -18,12 +16,23 @@ public class MenuManager : MonoBehaviour
         {
             Destroy(go.gameObject);
         }
+        Nul();
         StateNameController.Goed = 0;
         StateNameController.Fout = 0;
-        StateNameController.vraagCount = 0;
         StateNameController.checkVraag = "";
         StateNameController.laatsteVraag = false;
         StateNameController.timerOff = false;
         SceneManager.LoadScene(0);
+    }
+
+    public void Nul()
+    {
+        int i = 0;
+        while (i < StateNameController.vraagCount)
+        {
+            StateNameController.saveantwoord[i] = "";
+            i++;
+        }
+        StateNameController.vraagCount = 0;
     }
 }
