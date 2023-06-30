@@ -17,8 +17,9 @@ public class Antwoorden : MonoBehaviour
     public static string checkVraag;
     public void CheckAntwoord()
     {
-        string filePath = Path.Combine("Assets", "vragen.txt");
-        string vragenTxt = File.ReadAllText(filePath);
+        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
+        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
+        string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         checkVraag = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["laatste"];
         StateNameController.AGoed[StateNameController.vraagCount] = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["goed"];
@@ -62,7 +63,7 @@ public class Antwoorden : MonoBehaviour
 
     public void Popup()
     {
-        /*Time.timeScale = 1;*/
+        Time.timeScale = 1;
         if (StateNameController.laatsteVraag == true)
         {
             InleverenBtn.SetActive(true);
@@ -86,6 +87,8 @@ public class Antwoorden : MonoBehaviour
             i++;
             b++;
         }
+        StateNameController.timerOff = true;
+        SceneManager.LoadScene("Eind-leerlingen");
     }
     public void Interactable()
     {

@@ -9,7 +9,6 @@ public class TimerScript : MonoBehaviour
 {
     public float timeValue = 0;
     public static float timeCount;
-    public static bool timerOff = StateNameController.timerOff;
     public TMP_Text firstMinute;
     public TMP_Text secondMinute;
     public TMP_Text firstSecond;
@@ -18,7 +17,7 @@ public class TimerScript : MonoBehaviour
 
     void Start()
     {
-        timerOff = false;
+        StateNameController.timerOff = false;
         scene = SceneManager.GetActiveScene();
         GameObject go = GameObject.Find("TimerManager");
         if (go)
@@ -38,7 +37,7 @@ public class TimerScript : MonoBehaviour
                 firstSecond = GameObject.Find("firstSecond").GetComponent<TMP_Text>();
                 secondSecond = GameObject.Find("secondSecond").GetComponent<TMP_Text>();
                 DisplayTime(timeValue);
-                if (!timerOff)
+                if (!StateNameController.timerOff)
                 {
                     if (timeValue <= 3600)
                     {
@@ -56,13 +55,6 @@ public class TimerScript : MonoBehaviour
     public void EnableUpdate()
     {
         StateNameController.isUpdateEnabled = true;
-    }
-
-    public void Inleveren()
-    {
-        timerOff = true;
-        SceneManager.LoadScene("Eind-leerlingen");
-        StateNameController.timerOff = timerOff;
     }
 
     public void DisplayTime(float timeToDisplay)

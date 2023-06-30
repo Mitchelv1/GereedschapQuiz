@@ -1249,6 +1249,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af3b0511f005954ab71a71978d7d02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StoppenPopup: {fileID: 0}
+  Antwoord_A: {fileID: 0}
+  Antwoord_B: {fileID: 0}
+  Antwoord_C: {fileID: 0}
+  Antwoord_D: {fileID: 0}
+  Volgende: {fileID: 0}
+  Vorige: {fileID: 0}
+  ArrowL: {fileID: 0}
+  ArrowR: {fileID: 0}
+  Inleveren: {fileID: 0}
 --- !u!1 &961470750
 GameObject:
   m_ObjectHideFlags: 0

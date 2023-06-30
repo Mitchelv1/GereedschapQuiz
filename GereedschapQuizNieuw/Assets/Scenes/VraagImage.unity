@@ -2447,8 +2447,6 @@ GameObject:
   - component: {fileID: 509443496}
   - component: {fileID: 509443495}
   - component: {fileID: 509443494}
-  - component: {fileID: 509443499}
-  - component: {fileID: 509443498}
   m_Layer: 5
   m_Name: Inleveren
   m_TagString: Untagged
@@ -2500,18 +2498,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 509443499}
-        m_TargetAssemblyTypeName: TimerScript, Assembly-CSharp
-        m_MethodName: Inleveren
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1039160936}
         m_TargetAssemblyTypeName: Antwoorden, Assembly-CSharp
         m_MethodName: Inleveren
@@ -2583,47 +2569,6 @@ RectTransform:
   m_AnchoredPosition: {x: -97.600006, y: 34.90001}
   m_SizeDelta: {x: 79.98, y: 23}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &509443498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509443493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1af3b0511f005954ab71a71978d7d02e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StoppenPopup: {fileID: 0}
-  Antwoord_A: {fileID: 0}
-  Antwoord_B: {fileID: 0}
-  Antwoord_C: {fileID: 0}
-  Antwoord_D: {fileID: 0}
-  Volgende: {fileID: 0}
-  Vorige: {fileID: 0}
-  ArrowL: {fileID: 0}
-  ArrowR: {fileID: 0}
-  Inleveren: {fileID: 0}
---- !u!114 &509443499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509443493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 301228d626d32e4458f0d5e56b13cc2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeValue: 0
-  firstMinute: {fileID: 0}
-  secondMinute: {fileID: 0}
-  firstSecond: {fileID: 0}
-  secondSecond: {fileID: 0}
-  scene:
-    m_Handle: 0
 --- !u!1 &529477815
 GameObject:
   m_ObjectHideFlags: 0

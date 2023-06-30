@@ -22,7 +22,6 @@ public class MenuManager : MonoBehaviour
     }
     public void Menu()
     {
-        SluitStop();
         GameObject go = GameObject.Find("TimerManager");
         if (go)
         {
@@ -33,6 +32,7 @@ public class MenuManager : MonoBehaviour
         StateNameController.Fout = 0;
         StateNameController.checkVraag = "";
         StateNameController.laatsteVraag = false;
+        StateNameController.isUpdateEnabled = false;
         StateNameController.timerOff = false;
         SceneManager.LoadScene(0);
     }

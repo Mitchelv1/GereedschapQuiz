@@ -1,5 +1,8 @@
 using Newtonsoft.Json.Linq;
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,8 +44,9 @@ public class NormalVraag : MonoBehaviour
 
     public void AantalVragen()
     {
-        string filePath = Path.Combine("Assets", "vragen.txt");
-        string vragenTxt = File.ReadAllText(filePath);
+        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
+        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
+        string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         /*vindLaatste = (string)vragenJson["vragen"][aantVragen.ToString()]["laatste"];*/
         while ((string)vragenJson["vragen"][aantVragen.ToString()]["laatste"] != "ja")
@@ -79,8 +83,9 @@ public class NormalVraag : MonoBehaviour
     public void CheckVraag()
     {
         VraagReset();
-        string filePath = Path.Combine("Assets", "vragen.txt");
-        string vragenTxt = File.ReadAllText(filePath);
+        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
+        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
+        string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         vraagCountString = StateNameController.vraagCount + 1;
         Type = (string)vragenJson["vragen"][vraagCountString.ToString()]["type"];
@@ -105,8 +110,9 @@ public class NormalVraag : MonoBehaviour
         {
             StateNameController.laatsteVraag = false;
         }
-        string filePath = Path.Combine("Assets", "vragen.txt");
-        string vragenTxt = File.ReadAllText(filePath);
+        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
+        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
+        string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         vraagCountString = StateNameController.vraagCount - 1;
         Terug = StateNameController.vraagCount - 2;
@@ -129,8 +135,9 @@ public class NormalVraag : MonoBehaviour
     public void Normaal()
     {
         VraagReset();
-        string filePath = Path.Combine("Assets", "vragen.txt");
-        string vragenTxt = File.ReadAllText(filePath);
+        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
+        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
+        string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         Type = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["type"];
         string[] antwoordenJson = new string[4];
