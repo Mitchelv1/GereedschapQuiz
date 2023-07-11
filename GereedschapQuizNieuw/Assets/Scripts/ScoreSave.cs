@@ -52,6 +52,21 @@ public class ScoreSave : MonoBehaviour
 
                         dbReference.Child("users").Child(userID).SetRawJsonValueAsync(json);
                     }
+                    if (StateNameController.Goed == scoreValue)
+                    {
+                        dbReference.Child("users").Child(userID).Child("tijd").GetValueAsync().ContinueWith(task =>
+                        {
+                            DataSnapshot snapshot = task.Result;
+                            float tijdValue = float.Parse(snapshot.Value.ToString());
+                            if (StateNameController.timeValue < tijdValue)
+                            {
+                                User newUser = new User(naamInput.text);
+                                string json = JsonUtility.ToJson(newUser);
+
+                                dbReference.Child("users").Child(userID).SetRawJsonValueAsync(json);
+                            }
+                        });
+                    }
                 });
             }
         });
