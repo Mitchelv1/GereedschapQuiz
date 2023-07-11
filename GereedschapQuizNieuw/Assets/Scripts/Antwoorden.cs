@@ -1,9 +1,11 @@
 using Newtonsoft.Json.Linq;
 using System.IO;
 using TMPro;
+using Firebase.Database;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
+using System.Collections;
 
 public class Antwoorden : MonoBehaviour
 {
@@ -11,22 +13,29 @@ public class Antwoorden : MonoBehaviour
     public GameObject Antwoord_B;
     public GameObject Antwoord_C;
     public GameObject Antwoord_D;
+    public TextMeshProUGUI testtxt;
     public GameObject Volgende;
     public GameObject ArrowR;
     public GameObject InleverenBtn;
     public static string checkVraag;
+
+    private DatabaseReference dbReference;
     public void CheckAntwoord()
     {
+        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
         string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
         string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         checkVraag = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["laatste"];
-        StateNameController.AGoed[StateNameController.vraagCount] = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["goed"];
+        StartCoroutine(GetGoed((string goed) =>
+        {
+            StateNameController.AGoed[StateNameController.vraagCount] = goed;
+        }));
         if (checkVraag == "ja")
         {
             StateNameController.laatsteVraag = true;
         }
+        testtxt.text = StateNameController.AGoed[StateNameController.vraagCount];
     }
     public void AntwoordA()
     {
@@ -74,6 +83,7 @@ public class Antwoorden : MonoBehaviour
             ArrowR.SetActive(true);
         }
     }
+
     public void Inleveren()
     {
         int i = 0;
@@ -88,13 +98,27 @@ public class Antwoorden : MonoBehaviour
             b++;
         }
         StateNameController.timerOff = true;
-        SceneManager.LoadScene("Eind-leerlingen");
     }
+
     public void Interactable()
     {
         Antwoord_A.GetComponent<Toggle>().interactable = true;
         Antwoord_B.GetComponent<Toggle>().interactable = true;
         Antwoord_C.GetComponent<Toggle>().interactable = true;
         Antwoord_D.GetComponent<Toggle>().interactable = true;
+    }
+
+    public IEnumerator GetGoed(Action<string> onCallback)
+    {
+        var goedData = dbReference.Child("vragen").Child(StateNameController.vraagCount.ToString()).Child("goed").GetValueAsync();
+
+        yield return new WaitUntil(predicate: () => goedData.IsCompleted);
+
+        if (goedData != null)
+        {
+            DataSnapshot snapshot = goedData.Result;
+
+            onCallback.Invoke(snapshot.Value.ToString());
+        }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,6 +18,13 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public void Scorebord()
+    {
+        SceneManager.LoadScene(4);
+        StateNameController.isUpdateEnabled = false;
+    }
+
     public void Menu()
     {
         GameObject go = GameObject.Find("TimerManager");
@@ -29,11 +34,13 @@ public class MenuManager : MonoBehaviour
         }
         Nul();
         StateNameController.Goed = 0;
-        StateNameController.Fout = 0;
         StateNameController.checkVraag = "";
+        StateNameController.timeValue = 0;
         StateNameController.laatsteVraag = false;
         StateNameController.isUpdateEnabled = false;
         StateNameController.timerOff = false;
+        StateNameController.testint = 0;
+        StateNameController.rank = 0;
         SceneManager.LoadScene(0);
     }
 
@@ -50,8 +57,6 @@ public class MenuManager : MonoBehaviour
 
     public void OpenStop()
     {
-        /*Time.timeScale = 0;*/
-        StateNameController.isUpdateEnabled = false;
         Antwoord_A.GetComponent<Toggle>().interactable = false;
         Antwoord_B.GetComponent<Toggle>().interactable = false;
         Antwoord_C.GetComponent<Toggle>().interactable = false;
@@ -66,7 +71,6 @@ public class MenuManager : MonoBehaviour
 
     public void SluitStop()
     {
-        StateNameController.isUpdateEnabled = true;
         Antwoord_A.GetComponent<Toggle>().interactable = true;
         Antwoord_B.GetComponent<Toggle>().interactable = true;
         Antwoord_C.GetComponent<Toggle>().interactable = true;

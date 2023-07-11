@@ -57,7 +57,6 @@ public class ImageVraag : MonoBehaviour
     {
         VraagReset();
         string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
         string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         vraagCountString = StateNameController.vraagCount + 1;
@@ -84,7 +83,6 @@ public class ImageVraag : MonoBehaviour
             StateNameController.laatsteVraag = false;
         }
         string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
         string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         vraagCountString = StateNameController.vraagCount - 1;
@@ -109,7 +107,6 @@ public class ImageVraag : MonoBehaviour
     {
         VraagReset();
         string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
         string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         string[] antwoordenJson = new string[4];

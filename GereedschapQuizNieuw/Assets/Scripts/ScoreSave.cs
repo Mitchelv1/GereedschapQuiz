@@ -1,0 +1,149 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Firebase.Database;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+using System;
+
+public class ScoreSave : MonoBehaviour
+{
+    public TMP_InputField naamInput;
+    public GameObject OpslaanPopup;
+    public TextMeshProUGUI ScoresavedTxt;
+    public TextMeshProUGUI SavingTxt;
+    public GameObject VerderBtn;
+    public GameObject OpslaanBtn;
+    private string userID;
+    private DatabaseReference dbReference;
+
+    void Start()
+    {
+        userID = SystemInfo.deviceUniqueIdentifier;
+        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+    }
+
+    public void CreateUser()
+    {
+        OpslaanBtn.GetComponent<Button>().interactable = false;
+        dbReference.Child("users").Child(userID).GetValueAsync().ContinueWith(task =>
+        {
+            DataSnapshot snapshot = task.Result;
+
+            if (!snapshot.Exists)
+            {
+                User newUser = new User(naamInput.text);
+                string json = JsonUtility.ToJson(newUser);
+
+                dbReference.Child("users").Child(userID).SetRawJsonValueAsync(json);
+            }
+            else if (snapshot.Exists)
+            {
+                dbReference.Child("users").Child(userID).Child("score").GetValueAsync().ContinueWith(task =>
+                {
+                    DataSnapshot snapshot = task.Result;
+                    Debug.Log("Test in score ");
+                    int scoreValue = int.Parse(snapshot.Value.ToString());
+                    if (StateNameController.Goed > scoreValue)
+                    {
+                        User newUser = new User(naamInput.text);
+                        string json = JsonUtility.ToJson(newUser);
+
+                        dbReference.Child("users").Child(userID).SetRawJsonValueAsync(json);
+                    }
+                });
+            }
+        });
+        StartCoroutine(OpslaanDelay());
+    }
+    IEnumerator OpslaanDelay()
+    {
+        OpslaanPopup.SetActive(true);
+        WaitForSecondsRealtime dotinterval = new WaitForSecondsRealtime(0.75f);
+        for (int i = 0; i < 1; i++)
+        {
+            SavingTxt.text = "Opslaan";
+            yield return dotinterval;
+            SavingTxt.text = "Opslaan.";
+            yield return dotinterval;
+            SavingTxt.text = "Opslaan..";
+            yield return dotinterval;
+            SavingTxt.text = "Opslaan...";
+            yield return dotinterval;
+        }
+        SavingTxt.gameObject.SetActive(false);
+        ScoresavedTxt.gameObject.SetActive(true);
+        VerderBtn.GetComponent<Button>().interactable = true;
+        GetUsers();
+    }
+    public void GetUsers()
+    {
+        dbReference.Child("users").OrderByChild("score").LimitToLast(15).GetValueAsync().ContinueWith(task =>
+        {
+            DataSnapshot snapshot = task.Result;
+            List<UserData> users = new List<UserData>();
+
+            foreach (var childSnapshot in snapshot.Children)
+            {
+                string userID = childSnapshot.Key;
+                int score = Convert.ToInt32(childSnapshot.Child("score").Value);
+                float tijd = Convert.ToSingle(childSnapshot.Child("tijd").Value);
+                string naam = Convert.ToString(childSnapshot.Child("naam").Value);
+                string tijdstring = Convert.ToString(childSnapshot.Child("tijdString").Value);
+                UserData user = new UserData(userID, score, tijd, naam, tijdstring);
+                users.Add(user);
+            }
+
+            users.Sort((x, y) =>
+            {
+                int scoreComparison = y.score.CompareTo(x.score);
+                if (scoreComparison != 0)
+                {
+                    return scoreComparison;
+                }
+                else
+                {
+                    return x.tijd.CompareTo(y.tijd);
+                }
+            });
+
+            for (int i = 0; i < users.Count && i < 15; i++)
+            {
+                StateNameController.rank++;
+                StateNameController.naamUser[StateNameController.rank - 1] = users[i].naam;
+                StateNameController.scoreUser[StateNameController.rank - 1] = users[i].score.ToString();
+                StateNameController.tijdUser[StateNameController.rank - 1] = users[i].tijdstring;
+            }
+        });
+    }
+
+    public class UserData
+    {
+        public string userID;
+        public int score;
+        public float tijd;
+        public string naam;
+        public string tijdstring;
+
+        public UserData(string userID, int score, float tijd, string naam, string tijdstring)
+        {
+            this.userID = userID;
+            this.score = score;
+            this.tijd = tijd;
+            this.naam = naam;
+            this.tijdstring = tijdstring;
+        }
+    }
+
+    public void Scorebord()
+    {
+        OpslaanPopup.SetActive(false);
+        SavingTxt.gameObject.SetActive(true);
+        ScoresavedTxt.gameObject.SetActive(false);
+        VerderBtn.GetComponent<Button>().interactable = false;
+        OpslaanBtn.GetComponent<Button>().interactable = true;
+        SceneManager.LoadScene(4);
+        StateNameController.isUpdateEnabled = false;
+    }
+}

@@ -1,8 +1,5 @@
 using Newtonsoft.Json.Linq;
 using System.IO;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,10 +42,8 @@ public class NormalVraag : MonoBehaviour
     public void AantalVragen()
     {
         string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
         string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
-        /*vindLaatste = (string)vragenJson["vragen"][aantVragen.ToString()]["laatste"];*/
         while ((string)vragenJson["vragen"][aantVragen.ToString()]["laatste"] != "ja")
         {
             aantVragen++;
@@ -84,7 +79,6 @@ public class NormalVraag : MonoBehaviour
     {
         VraagReset();
         string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
         string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         vraagCountString = StateNameController.vraagCount + 1;
@@ -111,7 +105,6 @@ public class NormalVraag : MonoBehaviour
             StateNameController.laatsteVraag = false;
         }
         string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
         string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         vraagCountString = StateNameController.vraagCount - 1;
@@ -136,7 +129,6 @@ public class NormalVraag : MonoBehaviour
     {
         VraagReset();
         string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string filePath = Path.Combine("StreamingAssets", "vragen.txt");
         string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         Type = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["type"];
