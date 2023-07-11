@@ -13,7 +13,6 @@ public class Antwoorden : MonoBehaviour
     public GameObject Antwoord_B;
     public GameObject Antwoord_C;
     public GameObject Antwoord_D;
-    public TextMeshProUGUI testtxt;
     public GameObject Volgende;
     public GameObject ArrowR;
     public GameObject InleverenBtn;
@@ -35,7 +34,6 @@ public class Antwoorden : MonoBehaviour
         {
             StateNameController.laatsteVraag = true;
         }
-        testtxt.text = StateNameController.AGoed[StateNameController.vraagCount];
     }
     public void AntwoordA()
     {
