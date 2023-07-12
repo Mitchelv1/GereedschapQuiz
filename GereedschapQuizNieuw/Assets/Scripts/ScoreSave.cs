@@ -43,7 +43,6 @@ public class ScoreSave : MonoBehaviour
                 dbReference.Child("users").Child(userID).Child("score").GetValueAsync().ContinueWith(task =>
                 {
                     DataSnapshot snapshot = task.Result;
-                    Debug.Log("Test in score ");
                     int scoreValue = int.Parse(snapshot.Value.ToString());
                     if (StateNameController.Goed > scoreValue)
                     {
