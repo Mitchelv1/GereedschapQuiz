@@ -11,13 +11,13 @@ public class NormalVraag : MonoBehaviour
     public TextMeshProUGUI AntwoordATxt;
     public TextMeshProUGUI AntwoordBTxt;
     public TextMeshProUGUI AntwoordCTxt;
-    public TextMeshProUGUI AntwoordDTxt;
+/*    public TextMeshProUGUI AntwoordDTxt;*/
     public TextMeshProUGUI vraagNummerTxt;
     public TextMeshProUGUI totaalTxt;
     public GameObject Antwoord_A;
     public GameObject Antwoord_B;
     public GameObject Antwoord_C;
-    public GameObject Antwoord_D;
+/*    public GameObject Antwoord_D;*/
     public GameObject Volgende;
     public GameObject Vorige;
     public GameObject ArrowL;
@@ -69,11 +69,11 @@ public class NormalVraag : MonoBehaviour
         Antwoord_A.GetComponent<Toggle>().interactable = true;
         Antwoord_B.GetComponent<Toggle>().interactable = true;
         Antwoord_C.GetComponent<Toggle>().interactable = true;
-        Antwoord_D.GetComponent<Toggle>().interactable = true;
+/*        Antwoord_D.GetComponent<Toggle>().interactable = true;*/
         Antwoord_A.GetComponent<Toggle>().isOn = false;
         Antwoord_B.GetComponent<Toggle>().isOn = false;
         Antwoord_C.GetComponent<Toggle>().isOn = false;
-        Antwoord_D.GetComponent<Toggle>().isOn = false;
+/*        Antwoord_D.GetComponent<Toggle>().isOn = false;*/
     }
     public void CheckVraag()
     {
@@ -132,16 +132,16 @@ public class NormalVraag : MonoBehaviour
         string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
         Type = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["type"];
-        string[] antwoordenJson = new string[4];
+        string[] antwoordenJson = new string[3];
         string vraagJson = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["vraag"];
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             antwoordenJson[i] = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()][$"antwoord_{i + 1}"];
         }
         AntwoordATxt.text = antwoordenJson[0];
         AntwoordBTxt.text = antwoordenJson[1];
         AntwoordCTxt.text = antwoordenJson[2];
-        AntwoordDTxt.text = antwoordenJson[3];
+/*        AntwoordDTxt.text = antwoordenJson[3];*/
         VraagTxt.text = vraagJson;
         if (StateNameController.vraagCount < 10)
         {
@@ -168,9 +168,9 @@ public class NormalVraag : MonoBehaviour
         {
             Antwoord_C.GetComponent<Toggle>().isOn = true;
         }
-        if (StateNameController.saveantwoord[StateNameController.vraagCount - 1] == "D")
+/*        if (StateNameController.saveantwoord[StateNameController.vraagCount - 1] == "D")
         {
             Antwoord_D.GetComponent<Toggle>().isOn = true;
-        }
+        }*/
     }
 }

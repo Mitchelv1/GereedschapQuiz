@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
     public GameObject Antwoord_A;
     public GameObject Antwoord_B;
     public GameObject Antwoord_C;
-    public GameObject Antwoord_D;
+/*    public GameObject Antwoord_D;*/
     public GameObject Volgende;
     public GameObject Vorige;
     public GameObject ArrowL;
@@ -60,7 +60,7 @@ public class MenuManager : MonoBehaviour
         Antwoord_A.GetComponent<Toggle>().interactable = false;
         Antwoord_B.GetComponent<Toggle>().interactable = false;
         Antwoord_C.GetComponent<Toggle>().interactable = false;
-        Antwoord_D.GetComponent<Toggle>().interactable = false;
+/*        Antwoord_D.GetComponent<Toggle>().interactable = false;*/
         Volgende.GetComponent<Button>().interactable = false;
         Vorige.GetComponent<Button>().interactable = false;
         ArrowL.GetComponent<Button>().interactable = false;
@@ -74,7 +74,7 @@ public class MenuManager : MonoBehaviour
         Antwoord_A.GetComponent<Toggle>().interactable = true;
         Antwoord_B.GetComponent<Toggle>().interactable = true;
         Antwoord_C.GetComponent<Toggle>().interactable = true;
-        Antwoord_D.GetComponent<Toggle>().interactable = true;
+/*        Antwoord_D.GetComponent<Toggle>().interactable = true;*/
         Volgende.GetComponent<Button>().interactable = true;
         Vorige.GetComponent<Button>().interactable = true;
         ArrowL.GetComponent<Button>().interactable = true;

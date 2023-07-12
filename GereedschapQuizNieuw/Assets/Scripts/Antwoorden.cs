@@ -12,7 +12,7 @@ public class Antwoorden : MonoBehaviour
     public GameObject Antwoord_A;
     public GameObject Antwoord_B;
     public GameObject Antwoord_C;
-    public GameObject Antwoord_D;
+/*    public GameObject Antwoord_D;*/
     public GameObject Volgende;
     public GameObject ArrowR;
     public GameObject InleverenBtn;
@@ -59,14 +59,14 @@ public class Antwoorden : MonoBehaviour
         CheckAntwoord();
         Popup();
     }
-    public void AntwoordD()
+/*    public void AntwoordD()
     {
         Interactable();
         Antwoord_D.GetComponent<Toggle>().interactable = false;
         StateNameController.saveantwoord[StateNameController.vraagCount - 1] = "D";
         CheckAntwoord();
         Popup();
-    }
+    }*/
 
     public void Popup()
     {
@@ -103,7 +103,7 @@ public class Antwoorden : MonoBehaviour
         Antwoord_A.GetComponent<Toggle>().interactable = true;
         Antwoord_B.GetComponent<Toggle>().interactable = true;
         Antwoord_C.GetComponent<Toggle>().interactable = true;
-        Antwoord_D.GetComponent<Toggle>().interactable = true;
+/*        Antwoord_D.GetComponent<Toggle>().interactable = true;*/
     }
 
     public IEnumerator GetGoed(Action<string> onCallback)
