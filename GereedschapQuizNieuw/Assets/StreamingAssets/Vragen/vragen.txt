@@ -1,37 +1,37 @@
 {
 	vragen: {
 		1: {
-			vraag: "Dit is vraag 1",
-			antwoord_1: "V1A",
-			antwoord_2: "V1B",
-			antwoord_3: "V1C",
-			antwoord_4: "V1D",
+			vraag: "Welke van de onderstaande dingen kan je NIET doen met een Combinatietang?",
+			antwoord_1: "Iets vastpakken",
+			antwoord_2: "Spijkers uit trekken",
+			antwoord_3: "Dun draad doorknippen",
+			antwoord_4: "Iets buigen",
 			type: "normal"
 			},
 		2: {
-			vraag: "Vraag 2 test",
-			antwoord_1: "V2A",
-			antwoord_2: "V2B",
-			antwoord_3: "V2C",
-			antwoord_4: "V2D",
+			vraag: "Met welk gereedschap kan je moeren en bouten aan- of losdraaien?",
+			antwoord_1: "een Ringsleutel",
+			antwoord_2: "een Langbektang",
+			antwoord_3: "een Flenzenspreider",
+			antwoord_4: "een Combinatietang",
 			type: "normal"
 			},
 		3: {
-			vraag: "Dit is vraag 3",
-			antwoord_1: "V3A",
-			antwoord_2: "V3B",
-			antwoord_3: "V3C",
-			antwoord_4: "V3D",
-			type: "normal"
+			vraag: "Hoe heet het gereedschap dat te zien is in het plaatje?",
+			antwoord_1: "een Trektang",
+			antwoord_2: "een Kopkniptang",
+			antwoord_3: "een Combinatietang",
+			antwoord_4: "een Zijkniptang",
+			type: "image",
+			image: "Zijkniptang"
 			},
 		4: {
-			vraag: "Vraag 4 test",
-			antwoord_1: "V4A",
-			antwoord_2: "V4B",
-			antwoord_3: "V4C",
-			antwoord_4: "V4D",
-			type: "image",
-			image: "Bankhamer"
+			vraag: "Met welke soort sleutel kan je bouten en moeren met een exact bepaald koppel aan draaien?",
+			antwoord_1: "een Engelse sleutel",
+			antwoord_2: "een Dopsleutel",
+			antwoord_3: "een Steeksleutel",
+			antwoord_4: "een Momentsleutel",
+			type: "normal"
 			},
 		5: {
 			vraag: "Vraag 5 test",
