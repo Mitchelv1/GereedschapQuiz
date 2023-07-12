@@ -43,7 +43,7 @@
 			antwoord_2: "Dopsleutels met bijbehorende losse doppen bieden niet de mogelijkheid om verschillende maten doppen te gebruiken met dezelfde slinger.",
 			antwoord_3: "Dopsleutels met bijbehorende losse doppen bieden de mogelijkheid om verschillende maten doppen te gebruiken met dezelfde handgreep.",
 			type: "image",
-			image: "Dopsleutel",
+			image: "Dopsleutel"
 			},
 		7: {
 			vraag: "Waarom is een ringsleutel handig?",
@@ -205,19 +205,19 @@
 			type: "normal"
 			},
         29: {
-			vraag: "Wat is de naam van het gereedschap dat ook wel Beugelzaag wordt genoemd?",
-			antwoord_1: "Een figuurzaag.",
-			antwoord_2: "Een ijzerzaag.",
-			antwoord_3: "Een kapzaag.",
-			type: "image",
-            image: "Beugelzaag"
-			},
-        30: {
 			vraag: "Wat is een draadtap?",
 			antwoord_1: "Een boutvormig stuk gereedschap dat wordt gebruikt voor het maken van een inwendige boutdraad.",
 			antwoord_2: "Een onderdeel van een biertap in een professionele omgeving waar zogenaamd draadbier wordt geschonken.",
 			antwoord_3: "Een schroefvormig stuk gereedschap dat wordt gebruikt voor het maken van een inwendige schroefdraad.",
 			type: "normal",
+			},
+        30: {
+			vraag: "Wat is de naam van het gereedschap dat ook wel Beugelzaag wordt genoemd?",
+			antwoord_1: "Een figuurzaag.",
+			antwoord_2: "Een ijzerzaag.",
+			antwoord_3: "Een kapzaag.",
+			type: "image",
+            image: "Beugelzaag",
             laatste: "ja"
 			}
 
