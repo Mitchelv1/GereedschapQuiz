@@ -154,7 +154,7 @@
 			antwoord_3: "Met een spiraalboor kan in principe in elk materiaal geboord worden, zoals hout, metaal, steen en andere soorten materialen.",
 			type: "normal"
 			},
-		   22: {
+		22: {
 			vraag: "Wat is het verschil tussen een hoogteschuifmaat en een gewone schuifmaat?",
 			antwoord_1: "Een gewone schuifmaat wordt gebruikt om de afmetingen van een werkstuk te meten, terwijl een hoogteschuifmaat wordt gebruikt om de hoogte van een werkstuk te meten.",
 			antwoord_2: "Een gewone schuifmaat wordt gebruikt om de hardheid van een werkstuk te meten, terwijl een hoogteschuifmaat wordt gebruikt om kraslijnen op een werkstuk aan te brengen.",
@@ -162,49 +162,49 @@
 			type: "image",
             image: "Schuifmaat"
 			},
-                        23: {
+        23: {
 			vraag: "Wat zijn slagletters en slagcijfers en waarvoor worden ze gebruikt?",
 			antwoord_1: "Slagletters en slagcijfers zijn handslagstempels die gebruikt worden om symbolen in bijvoorbeeld metaal of hout te slaan.",
 			antwoord_2: "Slagletters en slagcijfers zijn slagstempels die gebruikt worden om symbolen in bijvoorbeeld glas te slaan.",
 			antwoord_3: "Slagletters en slagcijfers zijn handslagstempels die gebruikt worden om symbolen in bijvoorbeeld thermoharders te slaan.",
 			type: "normal"
   			},
-                        24: {
+        24: {
 			vraag: "Wat is het doel van een steekpasser?",
 			antwoord_1: "Met een steekpasser kan een rechthoeken en vierkanten worden gekrast op verschillende ondergronden.",
 			antwoord_2: "Met een steekpasser kan een eclips worden gekrast op verschillende ondergronden.",
 			antwoord_3: "Met een steekpasser kan een cirkel of cirkelboog worden gekrast op verschillende ondergronden.",
 			type: "normal"
 			},
-                       25: {
+        25: {
 			vraag: "Waarom is een centerpunt handig bij het boren van nauwkeurige gaten?",
 			antwoord_1: "Met een centerpunt kan nauwkeurig een gat worden gemaakt in het middelpunt van het te boren gat.",
 			antwoord_2: "Met een centerpunt kan nauwkeurig een putje worden gemaakt in het middelpunt van een cirkel.",
 			antwoord_3: "Met een centerpunt kan nauwkeurig een putje worden gemaakt in het middelpunt van het te boren gat.",
 			type: "normal"
 			},
-                       26: {
+        26: {
 			vraag: "Waarvoor wordt een kraspen gebruikt?",
 			antwoord_1: "Voor het aftekenen, om samen met een passer cirkels te tekenen.",
 			antwoord_2: "Voor het aftekenen op metaal, oftewel het aanbrengen van lijnen op werkstukken.",
 			antwoord_3: "Voor het aftekenen op zachte materialen, oftewel het aanbrengen van lijnen op materialen.",
 			type: "normal"
 			},
-                       27: {
+        27: {
 			vraag: "Waarvoor wordt een haakse slijper vaak gebruikt?",
 			antwoord_1: "Een haakse slijper wordt vaak gebruikt voor het grovere werk, zoals het doorslijpen van buizen of betonijzer.",
 			antwoord_2: "Een haakse slijper wordt nooit gebruikt voor het grovere werk, zoals het doorslijpen van buizen of betonijzer.",
 			antwoord_3: "Een haakse slijper wordt vaak gebruikt voor het het slijpen van haakse hoeken op je werkstuk.",
 			type: "normal"
 			},
-                       28: {
+        28: {
 			vraag: "Wat is een tafel/kolomboormachine?",
 			antwoord_1: "Een tafel/kolomboormachine is een stationaire boormachine die specifiek is ontworpen voor nauwkeurig boorwerk.",
 			antwoord_2: "Een tafel/kolomboormachine is een stationaire boormachine die specifiek is ontworpen voor onnauwkeurig boorwerk op houten voorwerpen.",
 			antwoord_3: "Een tafel/kolomboormachine is een stationaire boormachine die specifiek is ontworpen voor het kotteren van aluminium onderdelen.",
 			type: "normal"
 			},
-                         29: {
+        29: {
 			vraag: "Wat is de naam van het gereedschap dat ook wel Beugelzaag wordt genoemd?",
 			antwoord_1: "Een figuurzaag.",
 			antwoord_2: "Een ijzerzaag.",
@@ -212,7 +212,7 @@
 			type: "image",
             image: "Beugelzaag"
 			},
-                         30: {
+        30: {
 			vraag: "Wat is een draadtap?",
 			antwoord_1: "Een boutvormig stuk gereedschap dat wordt gebruikt voor het maken van een inwendige boutdraad.",
 			antwoord_2: "Een onderdeel van een biertap in een professionele omgeving waar zogenaamd draadbier wordt geschonken.",
