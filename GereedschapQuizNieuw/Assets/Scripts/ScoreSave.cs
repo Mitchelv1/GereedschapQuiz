@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 
 public class ScoreSave : MonoBehaviour
 {
@@ -16,6 +19,7 @@ public class ScoreSave : MonoBehaviour
     public GameObject VerderBtn;
     public GameObject OpslaanBtn;
     private string userID;
+    public TMP_InputField To;
     private DatabaseReference dbReference;
 
     void Start()
@@ -159,5 +163,37 @@ public class ScoreSave : MonoBehaviour
         OpslaanBtn.GetComponent<Button>().interactable = true;
         SceneManager.LoadScene(4);
         StateNameController.isUpdateEnabled = false;
+    }
+
+    public void SendEmail(string recipient, string subject, string body)
+    {
+        string senderEmail = "gereedschapquiz@gmail.com";
+        string senderPassword = "djwu vydp ibme xiay";
+
+        var message = new MimeMessage();
+        message.From.Add(new MailboxAddress("", senderEmail));
+        message.To.Add(new MailboxAddress("", recipient));
+        message.Subject = subject;
+        message.Body = new TextPart("plain")
+        {
+            Text = body
+        };
+
+        using (var client = new SmtpClient())
+        {
+            client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            client.Authenticate(senderEmail, senderPassword);
+            client.Send(message);
+            client.Disconnect(true);
+        }
+    }
+
+    public void OnSendEmailButtonClicked()
+    {
+        string recipient = To.text;
+        string subject = "Resultaten Gereedschap Quiz";
+        string body = "Je hebt zojuist de Gereedschap Quiz gemaakt! Hieronder staan de resultaten. \n\n" + "Naam: "+naamInput.text+"\n"+"Score: "+ StateNameController.Goed+"/"+StateNameController.aantVragen+"\n"+"Tijd besteed: "+StateNameController.tijd;
+        SendEmail(recipient, subject, body);
+        Debug.Log("Email sent");
     }
 }
