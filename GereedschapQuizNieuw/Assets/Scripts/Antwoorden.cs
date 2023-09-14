@@ -1,7 +1,9 @@
 using Newtonsoft.Json.Linq;
 using System.IO;
 using TMPro;
-using Firebase.Database;
+using System.Runtime.InteropServices;
+/*using Firebase.Database;*/
+using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
@@ -12,29 +14,42 @@ public class Antwoorden : MonoBehaviour
     public GameObject Antwoord_A;
     public GameObject Antwoord_B;
     public GameObject Antwoord_C;
-/*    public GameObject Antwoord_D;*/
+    public GameObject Antwoord_D;
     public GameObject Volgende;
     public GameObject ArrowR;
     public GameObject InleverenBtn;
+/*    public JObject vragenJson;*/
     public static string checkVraag;
-
-    private DatabaseReference dbReference;
+    public Text debugTxt;
+    /*private DatabaseReference dbReference;*/
     public void CheckAntwoord()
     {
-        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
-        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string vragenTxt = File.ReadAllText(readFromFilePath);
+        /*dbReference = FirebaseDatabase.DefaultInstance.RootReference;*/
+        string filePath = "StreamingAssets/vragen.txt";
+        string vragenTxt = File.ReadAllText(filePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
-        checkVraag = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["laatste"];
-        StartCoroutine(GetGoed((string goed) =>
+/*        StartCoroutine(GetFile((string fileData) =>
         {
-            StateNameController.AGoed[StateNameController.vraagCount] = goed;
-        }));
+            vragenJson = JObject.Parse(fileData);
+        }));*/
+        checkVraag = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["laatste"];
+        /*        StartCoroutine(GetGoed((string goed) =>
+                {
+                    StateNameController.AGoed[StateNameController.vraagCount] = goed;
+                }));*/
+        GetJSON("/vragen/" + StateNameController.vraagCount.ToString() + "/goed", gameObject.name, "GoedRequest", "OnRequestFailed");
         if (checkVraag == "ja")
         {
             StateNameController.laatsteVraag = true;
         }
     }
+/*    public IEnumerator GetFile(Action<string> onCallback)
+    {
+        string path = "StreamingAssets/vragen.txt";
+        UnityWebRequest uwr = UnityWebRequest.Get(path);
+        yield return uwr.SendWebRequest();
+        onCallback.Invoke(uwr.downloadHandler.text);
+    }*/
     public void AntwoordA()
     {
         Interactable();
@@ -59,14 +74,14 @@ public class Antwoorden : MonoBehaviour
         CheckAntwoord();
         Popup();
     }
-/*    public void AntwoordD()
+    public void AntwoordD()
     {
         Interactable();
         Antwoord_D.GetComponent<Toggle>().interactable = false;
         StateNameController.saveantwoord[StateNameController.vraagCount - 1] = "D";
         CheckAntwoord();
         Popup();
-    }*/
+    }
 
     public void Popup()
     {
@@ -103,10 +118,13 @@ public class Antwoorden : MonoBehaviour
         Antwoord_A.GetComponent<Toggle>().interactable = true;
         Antwoord_B.GetComponent<Toggle>().interactable = true;
         Antwoord_C.GetComponent<Toggle>().interactable = true;
-/*        Antwoord_D.GetComponent<Toggle>().interactable = true;*/
+        Antwoord_D.GetComponent<Toggle>().interactable = true;
     }
 
-    public IEnumerator GetGoed(Action<string> onCallback)
+    [DllImport("__Internal")]
+    public static extern void GetJSON(string path, string objectName, string callback, string fallback);
+
+/*    public IEnumerator GetGoed(Action<string> onCallback)
     {
         var goedData = dbReference.Child("vragen").Child(StateNameController.vraagCount.ToString()).Child("goed").GetValueAsync();
 
@@ -118,5 +136,16 @@ public class Antwoorden : MonoBehaviour
 
             onCallback.Invoke(snapshot.Value.ToString());
         }
+    }*/
+
+    private void GoedRequest(string data)
+    {
+        string goedData = data.Replace("\"", "");
+        StateNameController.AGoed[StateNameController.vraagCount] = goedData;
+    }
+
+    private void GoedRequestFailed(string error)
+    {
+        debugTxt.text = error;
     }
 }

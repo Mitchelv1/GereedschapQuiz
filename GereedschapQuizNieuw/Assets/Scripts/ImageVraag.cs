@@ -3,7 +3,10 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using System;
+using System.Collections;
 
 public class ImageVraag : MonoBehaviour
 {
@@ -27,6 +30,7 @@ public class ImageVraag : MonoBehaviour
     public Sprite image;
     public static string Type;
     public static string Img;
+/*    public JObject vragenJson;*/
     public static int vraagCountString;
     public int Terug;
 
@@ -36,6 +40,13 @@ public class ImageVraag : MonoBehaviour
         totaalTxt.text = StateNameController.aantVragen.ToString();
     }
 
+/*    public IEnumerator GetFile(Action<string> onCallback)
+    {
+        string path = "StreamingAssets/vragen.txt";
+        UnityWebRequest uwr = UnityWebRequest.Get(path);
+        yield return uwr.SendWebRequest();
+        onCallback.Invoke(uwr.downloadHandler.text);
+    }*/
     public void VraagReset()
     {
         ArrowL.SetActive(true);
@@ -56,9 +67,13 @@ public class ImageVraag : MonoBehaviour
     public void CheckVraag()
     {
         VraagReset();
-        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string vragenTxt = File.ReadAllText(readFromFilePath);
+        string filePath = "StreamingAssets/vragen.txt";
+        string vragenTxt = File.ReadAllText(filePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
+        /*        StartCoroutine(GetFile((string fileData) =>
+                {
+                    vragenJson = JObject.Parse(fileData);
+                }));*/
         vraagCountString = StateNameController.vraagCount + 1;
         Type = (string)vragenJson["vragen"][vraagCountString.ToString()]["type"];
         switch (Type)
@@ -82,9 +97,13 @@ public class ImageVraag : MonoBehaviour
         {
             StateNameController.laatsteVraag = false;
         }
-        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string vragenTxt = File.ReadAllText(readFromFilePath);
+        string filePath = "StreamingAssets/vragen.txt";
+        string vragenTxt = File.ReadAllText(filePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
+        /*        StartCoroutine(GetFile((string fileData) =>
+                {
+                    vragenJson = JObject.Parse(fileData);
+                }));*/
         vraagCountString = StateNameController.vraagCount - 1;
         Terug = StateNameController.vraagCount - 2;
         Type = (string)vragenJson["vragen"][vraagCountString.ToString()]["type"];
@@ -106,9 +125,13 @@ public class ImageVraag : MonoBehaviour
     public void Image()
     {
         VraagReset();
-        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-        string vragenTxt = File.ReadAllText(readFromFilePath);
+        string filePath = "StreamingAssets/vragen.txt";
+        string vragenTxt = File.ReadAllText(filePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
+        /*        StartCoroutine(GetFile((string fileData) =>
+                {
+                    vragenJson = JObject.Parse(fileData);
+                }));*/
         string[] antwoordenJson = new string[4];
         string vraagJson = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["vraag"];
         for (int i = 0; i < 3; i++)
