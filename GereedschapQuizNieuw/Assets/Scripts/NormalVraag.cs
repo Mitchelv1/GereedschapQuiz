@@ -2,11 +2,8 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System;
-using System.Collections;
 
 public class NormalVraag : MonoBehaviour
 {
@@ -30,7 +27,6 @@ public class NormalVraag : MonoBehaviour
     public static string vindLaatste;
     public static int vraagCountString;
     public static int aantVragen = 1;
-/*    public JObject vragenJson;*/
     public int Terug;
 
     private void Start()
@@ -42,24 +38,12 @@ public class NormalVraag : MonoBehaviour
         }
         totaalTxt.text = StateNameController.aantVragen.ToString();
     }
-    public IEnumerator GetFile(Action<string> onCallback)
-    {
-        string path = "StreamingAssets/vragen.txt";
-        UnityWebRequest uwr = UnityWebRequest.Get(path);
-        yield return uwr.SendWebRequest();
-        onCallback.Invoke(uwr.downloadHandler.text);
-    }
+
     public void AantalVragen()
     {
-/*        StartCoroutine(GetFile((string fileData) =>
-        {
-            vragenJson = JObject.Parse(fileData);
-        }));*/
-/*        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
-*/      string filePath = "StreamingAssets/vragen.txt";
-        string vragenTxt = File.ReadAllText(filePath);
+        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
+        string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
-        /*filePath = Path.Combine(filePath, "vragen.txt");*/
         while ((string)vragenJson["vragen"][aantVragen.ToString()]["laatste"] != "ja")
         {
             aantVragen++;
@@ -94,13 +78,9 @@ public class NormalVraag : MonoBehaviour
     public void CheckVraag()
     {
         VraagReset();
-        string filePath = "StreamingAssets/vragen.txt";
-        string vragenTxt = File.ReadAllText(filePath);
+        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
+        string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
-        /*        StartCoroutine(GetFile((string fileData) =>
-                {
-                    vragenJson = JObject.Parse(fileData);
-                }));*/
         vraagCountString = StateNameController.vraagCount + 1;
         Type = (string)vragenJson["vragen"][vraagCountString.ToString()]["type"];
         switch (Type)
@@ -124,13 +104,9 @@ public class NormalVraag : MonoBehaviour
         {
             StateNameController.laatsteVraag = false;
         }
-        string filePath = "StreamingAssets/vragen.txt";
-        string vragenTxt = File.ReadAllText(filePath);
+        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
+        string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
-        /*        StartCoroutine(GetFile((string fileData) =>
-                {
-                    vragenJson = JObject.Parse(fileData);
-                }));*/
         vraagCountString = StateNameController.vraagCount - 1;
         Terug = StateNameController.vraagCount - 2;
         Type = (string)vragenJson["vragen"][vraagCountString.ToString()]["type"];
@@ -152,13 +128,9 @@ public class NormalVraag : MonoBehaviour
     public void Normaal()
     {
         VraagReset();
-        string filePath = "StreamingAssets/vragen.txt";
-        string vragenTxt = File.ReadAllText(filePath);
+        string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
+        string vragenTxt = File.ReadAllText(readFromFilePath);
         JObject vragenJson = JObject.Parse(vragenTxt);
-        /*        StartCoroutine(GetFile((string fileData) =>
-                {
-                    vragenJson = JObject.Parse(fileData);
-                }));*/
         Type = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["type"];
         string[] antwoordenJson = new string[3];
         string vraagJson = (string)vragenJson["vragen"][StateNameController.vraagCount.ToString()]["vraag"];
