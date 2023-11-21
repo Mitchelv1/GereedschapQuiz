@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -22,6 +21,10 @@ public class TimerScript : MonoBehaviour
             DontDestroyOnLoad(go.gameObject);
         }
     }
+
+    //Deze functie is een timer, elke seconde word de tijd veranderd en de timer gaat ook mee als de scene word verwisseld.
+    //De timer word gestart op het moment dat je op start klikt en gaat door tot dat de timer word weggehaald bij het resultaten scherm.
+    //Als de tijd 1 uur bereikt word de quiz gestopt en word je terug gestuurd naar het menu.
 
     void Update()
     {
@@ -60,7 +63,7 @@ public class TimerScript : MonoBehaviour
                         StateNameController.laatsteVraag = false;
                         StateNameController.isUpdateEnabled = false;
                         StateNameController.timerOff = false;
-                        StateNameController.testint = 0;
+                        StateNameController.nul = 0;
                         StateNameController.rank = 0;
                         SceneManager.LoadScene(0);
                     }
@@ -69,11 +72,13 @@ public class TimerScript : MonoBehaviour
         }
     }
 
+    //Word uitgevoerd als je op start en start dan de Update functie.
     public void EnableUpdate()
     {
         StateNameController.isUpdateEnabled = true;
     }
 
+    //Dit zet de variabeles in een formaat zodat het er mooi uit ziet.
     public void DisplayTime(float timeToDisplay)
     {
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);

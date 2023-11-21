@@ -1,6 +1,5 @@
 using Newtonsoft.Json.Linq;
 using System.IO;
-using TMPro;
 using Firebase.Database;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,13 +11,13 @@ public class Antwoorden : MonoBehaviour
     public GameObject Antwoord_A;
     public GameObject Antwoord_B;
     public GameObject Antwoord_C;
-/*    public GameObject Antwoord_D;*/
     public GameObject Volgende;
     public GameObject ArrowR;
     public GameObject InleverenBtn;
     public static string checkVraag;
-
     private DatabaseReference dbReference;
+
+    //Kijkt of de vraag de laatste vraag is en start een coroutine om het goede antwoord te krijgen en een variabel er van te maken.
     public void CheckAntwoord()
     {
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
@@ -35,6 +34,8 @@ public class Antwoorden : MonoBehaviour
             StateNameController.laatsteVraag = true;
         }
     }
+
+    //Deze functie word uitgevoerd als er op het eerste antwoord word geklikt.
     public void AntwoordA()
     {
         Interactable();
@@ -43,6 +44,8 @@ public class Antwoorden : MonoBehaviour
         CheckAntwoord();
         Popup();
     }
+
+    //Deze functie word uitgevoerd als er op het tweede antwoord word geklikt.
     public void AntwoordB()
     {
         Interactable();
@@ -51,6 +54,8 @@ public class Antwoorden : MonoBehaviour
         CheckAntwoord();
         Popup();
     }
+
+    //Deze functie word uitgevoerd als er op het derde antwoord word geklikt.
     public void AntwoordC()
     {
         Interactable();
@@ -59,15 +64,8 @@ public class Antwoorden : MonoBehaviour
         CheckAntwoord();
         Popup();
     }
-/*    public void AntwoordD()
-    {
-        Interactable();
-        Antwoord_D.GetComponent<Toggle>().interactable = false;
-        StateNameController.saveantwoord[StateNameController.vraagCount - 1] = "D";
-        CheckAntwoord();
-        Popup();
-    }*/
 
+    //Dit zet de volgende knop aan zodat je pas naar de volgende vraag kan gaan als je op een antwoord heb gedrukt. Als het de laatste vraag is komt er de inleveren knop.
     public void Popup()
     {
         Time.timeScale = 1;
@@ -82,6 +80,7 @@ public class Antwoorden : MonoBehaviour
         }
     }
 
+    //Bij het klikken op de inleveren knop word deze functie uitgevoerd en worden de antwoorden gecontroleerd met de goede antwoorden.
     public void Inleveren()
     {
         int i = 0;
@@ -103,9 +102,9 @@ public class Antwoorden : MonoBehaviour
         Antwoord_A.GetComponent<Toggle>().interactable = true;
         Antwoord_B.GetComponent<Toggle>().interactable = true;
         Antwoord_C.GetComponent<Toggle>().interactable = true;
-/*        Antwoord_D.GetComponent<Toggle>().interactable = true;*/
     }
 
+    //Dit is de coroutine die het goede antwoord krijgt uit de database.
     public IEnumerator GetGoed(Action<string> onCallback)
     {
         var goedData = dbReference.Child("vragen").Child(StateNameController.vraagCount.ToString()).Child("goed").GetValueAsync();

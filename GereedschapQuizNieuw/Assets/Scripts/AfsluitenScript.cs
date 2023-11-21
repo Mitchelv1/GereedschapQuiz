@@ -7,6 +7,7 @@ public class AfsluitenScript : MonoBehaviour
     public GameObject StartBtn;
     public GameObject AfsluitenBtn;
 
+    //Deze functie opent een pop up als je op de afsluiten knop klikt.
     public void OpenStop()
     {
         AfsluitenBtn.GetComponent<Button>().interactable = false;
@@ -14,11 +15,13 @@ public class AfsluitenScript : MonoBehaviour
         AfsluitenPopup.SetActive(true);
     }
 
+    //Deze functie sluit de applicatie als je op Ja klikt bij de pop up.
     public void Afsluiten()
     {
         Application.Quit();
     }
 
+    //Deze functie sluit de pop up als je op Nee klikt bij de pop up
     public void SluitStop()
     {
         AfsluitenBtn.GetComponent<Button>().interactable = true;

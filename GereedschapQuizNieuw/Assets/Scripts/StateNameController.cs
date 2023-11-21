@@ -21,6 +21,6 @@ public class StateNameController : MonoBehaviour
     public static string[] tijdUser = new string[15];
     public static float[] tijdFloat = new float[15];
     public static string tijd;
-    public static int testint = 0;
+    public static int nul = 0;
     public static int rank = 0;
 }

@@ -28,6 +28,9 @@ public class ScoreSave : MonoBehaviour
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
     }
 
+    //Hier word een nieuwe gebruiker aangemaakt door middel van een userID, een userID verschilt per apparaat en is iets wat Unity zelf aanmaakt.
+    //Er word hier ook gecontroleerd of de gebruiker al eerder de quiz heeft gedaan zodat er geen nieuwe ID aan de database toegevoegd hoeft te worden.
+    //Daarna word er ook nog eens gecontroleerd of de score en/of tijd beter zijn dan je vorige score en/of tijd.
     public void CreateUser()
     {
         OpslaanBtn.GetComponent<Button>().interactable = false;
@@ -75,6 +78,8 @@ public class ScoreSave : MonoBehaviour
         });
         StartCoroutine(OpslaanDelay());
     }
+
+    //In deze coroutine word er een kleine vertraging toegevoegd omdat het een paar seconden kan duren om in de database te staan.
     IEnumerator OpslaanDelay()
     {
         OpslaanPopup.SetActive(true);

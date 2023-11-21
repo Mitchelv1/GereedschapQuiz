@@ -11,13 +11,11 @@ public class NormalVraag : MonoBehaviour
     public TextMeshProUGUI AntwoordATxt;
     public TextMeshProUGUI AntwoordBTxt;
     public TextMeshProUGUI AntwoordCTxt;
-/*    public TextMeshProUGUI AntwoordDTxt;*/
     public TextMeshProUGUI vraagNummerTxt;
     public TextMeshProUGUI totaalTxt;
     public GameObject Antwoord_A;
     public GameObject Antwoord_B;
     public GameObject Antwoord_C;
-/*    public GameObject Antwoord_D;*/
     public GameObject Volgende;
     public GameObject Vorige;
     public GameObject ArrowL;
@@ -39,6 +37,7 @@ public class NormalVraag : MonoBehaviour
         totaalTxt.text = StateNameController.aantVragen.ToString();
     }
 
+    //Deze functie checkt hoeveel vragen er in totaal zijn door te kijken welke vraag laatste als "ja" heeft
     public void AantalVragen()
     {
         string readFromFilePath = Application.streamingAssetsPath + "/Vragen/" + "vragen" + ".txt";
@@ -51,6 +50,8 @@ public class NormalVraag : MonoBehaviour
         StateNameController.aantVragen = aantVragen;
         StateNameController.checkVragen = false;
     }
+
+    //Reset de knoppen naar standaard zodat niks geselecteerd is en als je bijvoorbeeld van de laatste vraag 1 vraag terug gaat dat de inleveren knop ook weer weg gaat.
     public void VraagReset()
     {
         if (StateNameController.vraagCount == 1)
@@ -69,12 +70,13 @@ public class NormalVraag : MonoBehaviour
         Antwoord_A.GetComponent<Toggle>().interactable = true;
         Antwoord_B.GetComponent<Toggle>().interactable = true;
         Antwoord_C.GetComponent<Toggle>().interactable = true;
-/*        Antwoord_D.GetComponent<Toggle>().interactable = true;*/
         Antwoord_A.GetComponent<Toggle>().isOn = false;
         Antwoord_B.GetComponent<Toggle>().isOn = false;
         Antwoord_C.GetComponent<Toggle>().isOn = false;
-/*        Antwoord_D.GetComponent<Toggle>().isOn = false;*/
     }
+
+    //Kijkt wat voor type vraag het is via het tekst bestand. Als het een image is gaat de applicatie naar die specifieke scene toe,
+    //Als het een normale vraag is (zonder afbeelding) blijft de applicatie in deze scene en ook dus dit script om verder te gaan.
     public void CheckVraag()
     {
         VraagReset();
@@ -97,6 +99,7 @@ public class NormalVraag : MonoBehaviour
         Opgeslagen();
     }
 
+    //Deze functie word uitgevoerd als je op de vorige knop drukt.
     public void VorigeVraag()
     {
         VraagReset();
@@ -125,6 +128,7 @@ public class NormalVraag : MonoBehaviour
         Opgeslagen();
     }
 
+    //Dit is de functie die het meeste werk doet en er voor zorgt dat de vraag en antwoorden er komen te staan.
     public void Normaal()
     {
         VraagReset();
@@ -141,7 +145,6 @@ public class NormalVraag : MonoBehaviour
         AntwoordATxt.text = antwoordenJson[0];
         AntwoordBTxt.text = antwoordenJson[1];
         AntwoordCTxt.text = antwoordenJson[2];
-/*        AntwoordDTxt.text = antwoordenJson[3];*/
         VraagTxt.text = vraagJson;
         if (StateNameController.vraagCount < 10)
         {
@@ -154,6 +157,7 @@ public class NormalVraag : MonoBehaviour
         }
     }
 
+    //Deze functie slaat het geselecteerde antwoord op en maakt er een variabele van.
     public void Opgeslagen()
     {
         if (StateNameController.saveantwoord[StateNameController.vraagCount - 1] == "A")
@@ -168,9 +172,5 @@ public class NormalVraag : MonoBehaviour
         {
             Antwoord_C.GetComponent<Toggle>().isOn = true;
         }
-/*        if (StateNameController.saveantwoord[StateNameController.vraagCount - 1] == "D")
-        {
-            Antwoord_D.GetComponent<Toggle>().isOn = true;
-        }*/
     }
 }

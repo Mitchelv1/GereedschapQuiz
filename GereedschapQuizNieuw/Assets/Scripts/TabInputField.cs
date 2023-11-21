@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+//Dit script is alleen voor het laatste scherm waar je een naam en email invoerd, en als je op TAB drukt dat je dan naar de volgende box gaat.
 public class TabInputField : MonoBehaviour
 {
     public TMP_InputField NaamInput; // 0

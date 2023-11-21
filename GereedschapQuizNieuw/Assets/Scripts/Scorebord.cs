@@ -18,9 +18,10 @@ public class Scorebord : MonoBehaviour
         ChangeTxt();
     }
 
+    //Veranderd het scorebord als de student één van de 15 beste scores heeft verbroken.
     public void ChangeTxt() 
     {
-        for (int i = StateNameController.testint; i < StateNameController.rank; i++)
+        for (int i = StateNameController.nul; i < StateNameController.rank; i++)
         {
             naam[i].text = StateNameController.naamUser[i];
             score[i].text = StateNameController.scoreUser[i];
